@@ -53,13 +53,13 @@ overflow:hidden;
 
 position:absolute;
 
-top:11%;
+top:9%;
 
 left:14%;
 
 width:72%;
 
-height:74%;
+height:77%;
 
 object-fit:cover;
 
@@ -157,9 +157,7 @@ const lector=new FileReader();
 
 lector.onload=function(evento){
 
-document.getElementById("foto").src=
-
-evento.target.result;
+document.getElementById("foto").src=evento.target.result;
 
 }
 
@@ -177,17 +175,11 @@ document.getElementById("contenedor")
 
 ).then(function(canvas){
 
-const enlace=
+const enlace=document.createElement("a");
 
-document.createElement("a");
+enlace.download="Cumple_Emiliano_4.png";
 
-enlace.download=
-
-"Cumple_Emiliano_4.png";
-
-enlace.href=
-
-canvas.toDataURL("image/png");
+enlace.href=canvas.toDataURL("image/png");
 
 enlace.click();
 
