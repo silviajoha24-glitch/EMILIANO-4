@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
 
-<title>Fotomatón Emiliano #4 💙</title>
+<head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,17 +12,13 @@ margin:0;
 background:#000;
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
-min-height:100vh;
 }
 
 #contenedor{
 position:relative;
-width:100%;
-max-width:430px;
+width:430px;
 height:760px;
-overflow:hidden;
 }
 
 #foto{
@@ -46,12 +41,6 @@ z-index:2;
 pointer-events:none;
 }
 
-#subir{
-margin-top:20px;
-font-size:18px;
-padding:12px;
-}
-
 </style>
 
 </head>
@@ -60,9 +49,9 @@ padding:12px;
 
 <div id="contenedor">
 
-<img id="marco" src="Marco de fiesta Sonic (2).png">
-
 <img id="foto">
+
+<img id="marco" src="Marco de fiesta Sonic (2).png">
 
 </div>
 
@@ -76,19 +65,13 @@ const archivo = e.target.files[0];
 
 if(!archivo) return;
 
-const lector = new FileReader();
-
-lector.onload = function(evento){
-
-document.getElementById("foto").src = evento.target.result;
-
-}
-
-lector.readAsDataURL(archivo);
+document.getElementById("foto").src =
+URL.createObjectURL(archivo);
 
 });
 
 </script>
 
 </body>
+
 </html>
