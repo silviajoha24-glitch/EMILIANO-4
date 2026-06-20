@@ -28,16 +28,22 @@ max-width:430px;
 #foto{
 width:100%;
 display:block;
-}
-
-#marco{
+object-fit:cover;
 position:absolute;
 top:0;
 left:0;
-width:100%;
 height:100%;
+z-index:1;
+}
+
+#marco{
+position:relative;
+width:100%;
+display:block;
+z-index:2;
 pointer-events:none;
 }
+
 
 #subir{
 margin-top:20px;
@@ -53,7 +59,7 @@ padding:12px;
 
 <div id="contenedor">
 
-<img id="foto" src="" style="width:100%;height:auto;">
+<img id="foto">
 
 <img id="marco" src="Marco%20de%20fiesta%20Sonic%20(2).png">
 
