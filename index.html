@@ -53,7 +53,7 @@ padding:12px;
 
 <div id="contenedor">
 
-<img id="foto">
+<img id="foto" src="" style="width:100%;height:auto;">
 
 <img id="marco" src="Marco%20de%20fiesta%20Sonic%20(2).png">
 
@@ -69,7 +69,15 @@ const archivo = e.target.files[0];
 
 if(!archivo) return;
 
-document.getElementById("foto").src = URL.createObjectURL(archivo);
+const lector = new FileReader();
+
+lector.onload = function(e){
+
+document.getElementById("foto").src = e.target.result;
+
+}
+
+lector.readAsDataURL(archivo);
 
 });
 
