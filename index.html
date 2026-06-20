@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 
 <title>Fotomatón Emiliano #4 💙</title>
@@ -63,7 +62,7 @@ padding:12px;
 
 <img id="foto">
 
-<img id="marco" src="Marco%20de%20fiesta%20Sonic%20(2).png">
+<img id="marco" src="Marco de fiesta Sonic (2).png">
 
 </div>
 
@@ -79,9 +78,9 @@ if(!archivo) return;
 
 const lector = new FileReader();
 
-lector.onload = function(e){
+lector.onload = function(evento){
 
-document.getElementById("foto").src = e.target.result;
+document.getElementById("foto").src = evento.target.result;
 
 }
 
@@ -92,5 +91,4 @@ lector.readAsDataURL(archivo);
 </script>
 
 </body>
-
 </html>
