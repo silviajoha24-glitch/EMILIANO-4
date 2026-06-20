@@ -23,23 +23,25 @@ min-height:100vh;
 position:relative;
 width:100%;
 max-width:430px;
+height:760px;
+overflow:hidden;
 }
 
 #foto{
-width:100%;
-display:block;
-object-fit:cover;
 position:absolute;
 top:0;
 left:0;
+width:100%;
 height:100%;
+object-fit:cover;
 z-index:1;
 }
-
 #marco{
-position:relative;
+position:absolute;
+top:0;
+left:0;
 width:100%;
-display:block;
+height:100%;
 z-index:2;
 pointer-events:none;
 }
@@ -59,7 +61,7 @@ padding:12px;
 
 <div id="contenedor">
 
-<img id="foto">
+<img id="foto" src="">
 
 <img id="marco" src="Marco%20de%20fiesta%20Sonic%20(2).png">
 
