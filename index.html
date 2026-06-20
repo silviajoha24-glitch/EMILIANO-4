@@ -1,75 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 
-<title>Fotomatón Emiliano #4 💙</title>
+<meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Fotomatón Emiliano #4 💙</title>
 
 <style>
 
 body{
+
 margin:0;
+
 background:#000;
+
 display:flex;
+
 flex-direction:column;
+
 align-items:center;
+
+justify-content:center;
+
 min-height:100vh;
+
 font-family:Arial,sans-serif;
-overflow:hidden;
+
+padding:10px;
+
 }
 
 #contenedor{
+
 position:relative;
+
 width:95vw;
+
 max-width:500px;
-height:88vh;
+
+aspect-ratio:9/16;
+
 overflow:hidden;
-touch-action:none;
+
 }
 
 #foto{
+
 position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
+
+/* AJUSTE DEL ÁREA INTERNA */
+
+top:14%;
+
+left:18%;
+
+width:64%;
+
+height:63%;
+
 object-fit:cover;
+
 z-index:1;
-
-transform:translate(0px,0px) scale(1);
-
-transform-origin:center;
 
 }
 
 #marco{
+
 position:absolute;
+
 top:0;
+
 left:0;
+
 width:100%;
+
 height:100%;
+
 object-fit:contain;
+
 z-index:2;
+
 pointer-events:none;
+
 }
 
 #subir,
+
 #guardar{
 
-margin-top:10px;
-padding:12px 20px;
+width:260px;
+
+padding:14px;
+
+margin-top:15px;
+
 font-size:18px;
+
 border:none;
-border-radius:12px;
-cursor:pointer;
+
+border-radius:15px;
 
 }
 
 #guardar{
+
 background:#0d6efd;
+
 color:white;
+
 }
 
 </style>
@@ -88,25 +129,19 @@ color:white;
 
 <input id="subir" type="file" accept="image/*">
 
-<button id="guardar">Guardar foto</button>
+<button id="guardar">
+
+📸 Guardar foto
+
+</button>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <script>
 
-const foto=document.getElementById("foto");
+document.getElementById("subir")
 
-let posX=0;
-
-let posY=0;
-
-let escala=1;
-
-let inicioX=0;
-
-let inicioY=0;
-
-let arrastrando=false;
-
-document.getElementById("subir").addEventListener("change",function(e){
+.addEventListener("change",function(e){
 
 const archivo=e.target.files[0];
 
@@ -116,7 +151,9 @@ const lector=new FileReader();
 
 lector.onload=function(evento){
 
-foto.src=evento.target.result;
+document.getElementById("foto").src=
+
+evento.target.result;
 
 }
 
@@ -124,77 +161,31 @@ lector.readAsDataURL(archivo);
 
 });
 
-function actualizar(){
+document.getElementById("guardar")
 
-foto.style.transform=`translate(${posX}px,${posY}px) scale(${escala})`;
+.addEventListener("click",function(){
 
-}
+html2canvas(
 
-foto.addEventListener("touchstart",function(e){
+document.getElementById("contenedor")
 
-if(e.touches.length===1){
+).then(function(canvas){
 
-arrastrando=true;
+const enlace=
 
-inicioX=e.touches[0].clientX-posX;
+document.createElement("a");
 
-inicioY=e.touches[0].clientY-posY;
+enlace.download=
 
-}
+"Cumple_Emiliano_4.png";
 
-if(e.touches.length===2){
+enlace.href=
 
-const dx=e.touches[0].clientX-e.touches[1].clientX;
+canvas.toDataURL("image/png");
 
-const dy=e.touches[0].clientY-e.touches[1].clientY;
-
-window.distanciaInicial=Math.sqrt(dx*dx+dy*dy);
-
-window.escalaInicial=escala;
-
-}
+enlace.click();
 
 });
-
-foto.addEventListener("touchmove",function(e){
-
-e.preventDefault();
-
-if(e.touches.length===1 && arrastrando){
-
-posX=e.touches[0].clientX-inicioX;
-
-posY=e.touches[0].clientY-inicioY;
-
-actualizar();
-
-}
-
-if(e.touches.length===2){
-
-const dx=e.touches[0].clientX-e.touches[1].clientX;
-
-const dy=e.touches[0].clientY-e.touches[1].clientY;
-
-const distancia=Math.sqrt(dx*dx+dy*dy);
-
-escala=window.escalaInicial*(distancia/window.distanciaInicial);
-
-actualizar();
-
-}
-
-});
-
-foto.addEventListener("touchend",function(){
-
-arrastrando=false;
-
-});
-
-document.getElementById("guardar").addEventListener("click",function(){
-
-alert("Mantén presionada la imagen y guárdala desde Descargas.");
 
 });
 
