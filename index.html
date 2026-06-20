@@ -17,6 +17,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 min-height:100vh;
+font-family:Arial,sans-serif;
 }
 
 #contenedor{
@@ -34,7 +35,7 @@ left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-z-index:10;
+z-index:1;
 }
 
 #marco{
@@ -43,21 +44,24 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:20;
+object-fit:contain;
+z-index:2;
 pointer-events:none;
 }
 
-#subir{
+#subir,
+#guardar{
 margin-top:15px;
 font-size:18px;
-padding:12px;
+padding:12px 20px;
+border:none;
+border-radius:12px;
+cursor:pointer;
 }
 
-#descargar{
-margin-top:10px;
-font-size:18px;
-padding:12px 20px;
-cursor:pointer;
+#guardar{
+background:#0d6efd;
+color:white;
 }
 
 </style>
@@ -76,23 +80,21 @@ cursor:pointer;
 
 <input id="subir" type="file" accept="image/*">
 
-<button id="descargar">📸 Guardar mi foto</button>
-
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<button id="guardar">Guardar foto</button>
 
 <script>
 
-document.getElementById("subir").addEventListener("change", function(e){
+document.getElementById("subir").addEventListener("change",function(e){
 
-const archivo = e.target.files[0];
+const archivo=e.target.files[0];
 
 if(!archivo) return;
 
-const lector = new FileReader();
+const lector=new FileReader();
 
-lector.onload = function(evento){
+lector.onload=function(evento){
 
-document.getElementById("foto").src = evento.target.result;
+document.getElementById("foto").src=evento.target.result;
 
 }
 
@@ -100,19 +102,9 @@ lector.readAsDataURL(archivo);
 
 });
 
-document.getElementById("descargar").addEventListener("click", function(){
+document.getElementById("guardar").addEventListener("click",function(){
 
-html2canvas(document.getElementById("contenedor")).then(canvas => {
-
-const enlace = document.createElement("a");
-
-enlace.download = "Fotomaton_Emiliano_4.png";
-
-enlace.href = canvas.toDataURL("image/png");
-
-enlace.click();
-
-});
+alert("Mantén presionada la imagen para guardarla en Descargas.");
 
 });
 
